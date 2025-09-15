@@ -129,7 +129,7 @@ export function BlockForm({ onSubmit, onCancel, initialData, isEditing = false }
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="e.g., Math Study Session, Research Paper Writing"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-3 text-black py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             maxLength={200}
             required
           />
@@ -146,7 +146,7 @@ export function BlockForm({ onSubmit, onCancel, initialData, isEditing = false }
               value={startTime}
               onChange={(e) => handleStartTimeChange(e.target.value)}
               min={minDateTime}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-3 py-2  text-black border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               required
             />
           </div>
@@ -161,7 +161,7 @@ export function BlockForm({ onSubmit, onCancel, initialData, isEditing = false }
               value={endTime}
               onChange={(e) => setEndTime(e.target.value)}
               min={startTime || minDateTime}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-3  text-black py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               required
             />
           </div>

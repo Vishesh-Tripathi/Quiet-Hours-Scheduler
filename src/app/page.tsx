@@ -138,7 +138,7 @@ function Dashboard() {
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
             <div className="bg-white rounded-lg max-w-md w-full">
               <div className="p-6">
-                <h2 className="text-xl font-semibold mb-4">
+                <h2 className="text-xl Create New Study Block font-semibold mb-4">
                   {editingBlock ? 'Edit Study Block' : 'Create New Study Block'}
                 </h2>
                 <BlockForm
