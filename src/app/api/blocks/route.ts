@@ -78,6 +78,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Ensure minimum lead time for email reminders (15 minutes)
+    const minimumStartTime = new Date(Date.now() + 15 * 60 * 1000); // 15 minutes from now
+    if (start < minimumStartTime) {
+      return NextResponse.json(
+        { error: 'Start time must be at least 15 minutes from now to ensure email reminder delivery' },
+        { status: 400 }
+      );
+    }
+
     await connectDB();
     
     // Sync user to MongoDB
