@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Quiet Hours Scheduler
 
 A comprehensive study block scheduling application with email reminders built with Next.js, MongoDB, Supabase, and automated CRON notifications.
@@ -224,3 +225,6 @@ This project is open source and available under the [MIT License](LICENSE).
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+=======
+# Quiet-Hours-Scheduler
+>>>>>>> f41bb1281ea2e7dd977596354b3f2096002d5e76
