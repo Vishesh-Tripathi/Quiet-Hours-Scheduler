@@ -101,9 +101,9 @@ export function BlockList({ blocks, onEdit, onDelete, loading = false }: BlockLi
   if (blocks.length === 0) {
     return (
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 text-center">
-        <div className="text-gray-400 text-6xl mb-4">📚</div>
-        <h3 className="text-lg font-medium text-gray-900 mb-2">No study blocks yet</h3>
-        <p className="text-gray-500 mb-4">
+        <div className="text-black  400 text-6xl mb-4">📚</div>
+        <h3 className="text-lg font-medium text-black  900 mb-2">No study blocks yet</h3>
+        <p className="text-black  500 mb-4">
           Create your first study block to start managing your quiet hours.
         </p>
       </div>
@@ -130,7 +130,7 @@ export function BlockList({ blocks, onEdit, onDelete, loading = false }: BlockLi
       {upcomingBlocks.length > 0 && (
         <div className="bg-white rounded-lg shadow-sm border border-gray-200">
           <div className="px-6 py-4 border-b border-gray-200">
-            <h3 className="text-lg font-semibold text-gray-900">
+            <h3 className="text-lg font-semibold text-black  900">
               Upcoming Study Blocks ({upcomingBlocks.length})
             </h3>
           </div>
@@ -142,7 +142,7 @@ export function BlockList({ blocks, onEdit, onDelete, loading = false }: BlockLi
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center space-x-3 mb-2">
-                        <h4 className="text-lg font-medium text-gray-900">
+                        <h4 className="text-lg font-medium text-black  900">
                           {block.title}
                         </h4>
                         <span
@@ -153,7 +153,7 @@ export function BlockList({ blocks, onEdit, onDelete, loading = false }: BlockLi
                               ? 'bg-yellow-100 text-yellow-800'
                               : blockStatus.color === 'blue'
                               ? 'bg-blue-100 text-blue-800'
-                              : 'bg-gray-100 text-gray-800'
+                              : 'bg-gray-100 text-black  800'
                           }`}
                         >
                           {blockStatus.label}
@@ -164,7 +164,7 @@ export function BlockList({ blocks, onEdit, onDelete, loading = false }: BlockLi
                           </span>
                         )}
                       </div>
-                      <div className="flex items-center space-x-4 text-sm text-gray-600">
+                      <div className="flex items-center space-x-4 text-sm text-black  600">
                         <span>🕒 {formatTimeRange(block.startTime, block.endTime)}</span>
                         <span>⏱️ {getDuration(block.startTime, block.endTime)}</span>
                       </div>
@@ -172,7 +172,7 @@ export function BlockList({ blocks, onEdit, onDelete, loading = false }: BlockLi
                     <div className="flex items-center space-x-2 ml-4">
                       <button
                         onClick={() => onEdit(block)}
-                        className="p-2 text-gray-400 hover:text-blue-600 transition-colors"
+                        className="p-2 text-black  400 hover:text-blue-600 transition-colors"
                         title="Edit block"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -182,7 +182,7 @@ export function BlockList({ blocks, onEdit, onDelete, loading = false }: BlockLi
                       <button
                         onClick={() => handleDelete(block._id, block.title)}
                         disabled={deletingId === block._id}
-                        className="p-2 text-gray-400 hover:text-red-600 transition-colors disabled:opacity-50"
+                        className="p-2 text-black  400 hover:text-red-600 transition-colors disabled:opacity-50"
                         title="Delete block"
                       >
                         {deletingId === block._id ? (
@@ -206,7 +206,7 @@ export function BlockList({ blocks, onEdit, onDelete, loading = false }: BlockLi
       {pastBlocks.length > 0 && (
         <div className="bg-white rounded-lg shadow-sm border border-gray-200">
           <div className="px-6 py-4 border-b border-gray-200">
-            <h3 className="text-lg font-semibold text-gray-900">
+            <h3 className="text-lg font-semibold text-black  900">
               Completed Study Blocks ({pastBlocks.length})
             </h3>
           </div>
@@ -216,14 +216,14 @@ export function BlockList({ blocks, onEdit, onDelete, loading = false }: BlockLi
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <div className="flex items-center space-x-3 mb-2">
-                      <h4 className="text-lg font-medium text-gray-900">
+                      <h4 className="text-lg font-medium text-black  900">
                         {block.title}
                       </h4>
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-black  800">
                         ✅ Completed
                       </span>
                     </div>
-                    <div className="flex items-center space-x-4 text-sm text-gray-600">
+                    <div className="flex items-center space-x-4 text-sm text-black  600">
                       <span>🕒 {formatTimeRange(block.startTime, block.endTime)}</span>
                       <span>⏱️ {getDuration(block.startTime, block.endTime)}</span>
                     </div>
@@ -231,7 +231,7 @@ export function BlockList({ blocks, onEdit, onDelete, loading = false }: BlockLi
                   <button
                     onClick={() => handleDelete(block._id, block.title)}
                     disabled={deletingId === block._id}
-                    className="p-2 text-gray-400 hover:text-red-600 transition-colors disabled:opacity-50"
+                    className="p-2 text-black  400 hover:text-red-600 transition-colors disabled:opacity-50"
                     title="Delete block"
                   >
                     {deletingId === block._id ? (
@@ -247,7 +247,7 @@ export function BlockList({ blocks, onEdit, onDelete, loading = false }: BlockLi
             ))}
           </div>
           {pastBlocks.length > 5 && (
-            <div className="px-6 py-3 bg-gray-50 text-center text-sm text-gray-600">
+            <div className="px-6 py-3 bg-gray-50 text-center text-sm text-black  600">
               ... and {pastBlocks.length - 5} more completed blocks
             </div>
           )}

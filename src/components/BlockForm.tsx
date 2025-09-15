@@ -108,7 +108,7 @@ export function BlockForm({ onSubmit, onCancel, initialData, isEditing = false }
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4">
+      <h3 className="text-lg font-semibold text-black   mb-4">
         {isEditing ? 'Edit Study Block' : 'Create New Study Block'}
       </h3>
 
@@ -120,7 +120,7 @@ export function BlockForm({ onSubmit, onCancel, initialData, isEditing = false }
         )}
 
         <div>
-          <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="title" className="block text-sm font-medium text-black   mb-1">
             Title
           </label>
           <input
@@ -137,7 +137,7 @@ export function BlockForm({ onSubmit, onCancel, initialData, isEditing = false }
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="startTime" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="startTime" className="block text-sm font-medium text-black   mb-1">
               Start Time
             </label>
             <input
@@ -152,7 +152,7 @@ export function BlockForm({ onSubmit, onCancel, initialData, isEditing = false }
           </div>
 
           <div>
-            <label htmlFor="endTime" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="endTime" className="block text-sm font-medium text-black  700 mb-1">
               End Time
             </label>
             <input
@@ -169,7 +169,7 @@ export function BlockForm({ onSubmit, onCancel, initialData, isEditing = false }
 
         {startTime && (
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-black   mb-2">
               Quick Duration
             </label>
             <div className="flex flex-wrap gap-2">
@@ -178,7 +178,7 @@ export function BlockForm({ onSubmit, onCancel, initialData, isEditing = false }
                   key={minutes}
                   type="button"
                   onClick={() => setQuickDuration(minutes)}
-                  className="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md transition-colors"
+                  className="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 text-black  rounded-md transition-colors"
                 >
                   {minutes}m
                 </button>
@@ -192,7 +192,7 @@ export function BlockForm({ onSubmit, onCancel, initialData, isEditing = false }
             <button
               type="button"
               onClick={onCancel}
-              className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors"
+              className="px-4 py-2 text-sm font-medium text-black  700 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors"
             >
               Cancel
             </button>

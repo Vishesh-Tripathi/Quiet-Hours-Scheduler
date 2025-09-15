@@ -141,11 +141,11 @@ function AuthForm() {
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-gray-900">🔕</h1>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          <h1 className="text-4xl font-bold text-black  ">🔕</h1>
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-black  ">
             Quiet Hours Scheduler
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
+          <p className="mt-2 text-center text-sm text-black  ">
             {isSignUp ? 'Create your account' : 'Sign in to your account'}
           </p>
         </div>
@@ -167,7 +167,7 @@ function AuthForm() {
             )}
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="email" className="block text-sm font-medium text-black  ">
                 Email address
               </label>
               <div className="mt-1">
@@ -186,7 +186,7 @@ function AuthForm() {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="password" className="block text-sm font-medium text-black  ">
                 Password
               </label>
               <div className="mt-1">

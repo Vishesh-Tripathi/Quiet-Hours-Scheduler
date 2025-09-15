@@ -99,7 +99,7 @@ function Dashboard() {
     <div className="min-h-screen bg-gray-50 pt-4 p-8">
       <div className="max-w-4xl mx-auto">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">
+          <h1 className="text-3xl font-bold text-black  ">
             My Study Blocks
           </h1>
           <button
@@ -120,7 +120,7 @@ function Dashboard() {
         {!loading && blocks.length === 0 && !showForm && (
           <div className="bg-white rounded-lg shadow p-6 mb-6">
             <h2 className="text-xl font-semibold mb-4">Welcome to your Quiet Hours Scheduler!</h2>
-            <p className="text-gray-600 mb-4">
+            <p className="text-black  600 mb-4">
               Get started by creating your first study block. Set up focused study periods and receive 
               email reminders to help you stay on track.
             </p>

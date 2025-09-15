@@ -32,7 +32,7 @@ export function Navigation() {
               <span className="text-2xl">🔕</span>
             </div>
             <div className="ml-3">
-              <h1 className="text-xl font-semibold text-gray-900">
+              <h1 className="text-xl font-semibold text-black  900">
                 Quiet Hours Scheduler
               </h1>
             </div>
@@ -50,10 +50,10 @@ export function Navigation() {
               
               {/* User info */}
               <div className="flex flex-col">
-                <span className="text-sm font-medium text-gray-900">
+                <span className="text-sm font-medium text-black  900">
                   {user.user_metadata?.name || user.email?.split('@')[0]}
                 </span>
-                <span className="text-xs text-gray-500">
+                <span className="text-xs text-black  500">
                   {user.email}
                 </span>
               </div>
@@ -62,7 +62,7 @@ export function Navigation() {
             {/* Status indicator */}
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-              <span className="text-xs text-gray-600">Online</span>
+              <span className="text-xs text-black  600">Online</span>
             </div>
 
             {/* Logout button */}
