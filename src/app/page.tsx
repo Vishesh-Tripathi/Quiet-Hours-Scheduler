@@ -68,7 +68,7 @@ function Dashboard() {
       setShowForm(false);
       setEditingBlock(null);
     } catch (err) {
-      throw err; // Let the form handle the error
+      throw err; 
     }
   };
 

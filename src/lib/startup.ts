@@ -1,7 +1,7 @@
-// This file ensures the cron scheduler is initialized when the server starts
+
 import { getCronScheduler } from '@/lib/cron';
 
-// Initialize the cron scheduler when this module is imported
+
 let isInitialized = false;
 
 export function initializeCronScheduler() {
@@ -15,5 +15,5 @@ export function initializeCronScheduler() {
   return getCronScheduler();
 }
 
-// Auto-initialize when the module is loaded
+
 initializeCronScheduler();

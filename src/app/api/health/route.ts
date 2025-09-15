@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// This endpoint can be called to check if the server and cron are running
+
 export async function POST(request: NextRequest) {
   return GET(request);
 }

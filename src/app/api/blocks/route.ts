@@ -7,7 +7,7 @@ import { SupabaseStudyBlockService } from '@/lib/supabase-admin';
 
 export async function GET(request: NextRequest) {
   try {
-    const { supabase, user } = await createClient(request);
+    const {  user } = await createClient(request);
 
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -15,10 +15,10 @@ export async function GET(request: NextRequest) {
 
     await connectDB();
     
-    // Sync user to MongoDB
+    
     await syncUser(user);
 
-    // Get user's study blocks
+    // Get MongoDB user
     const blocks = await StudyBlock.find({
       supabaseUserId: user.id,
       isActive: true,
@@ -36,7 +36,7 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const { supabase, user } = await createClient(request);
+    const {  user } = await createClient(request);
 
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

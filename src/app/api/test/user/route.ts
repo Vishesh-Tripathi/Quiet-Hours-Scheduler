@@ -14,11 +14,11 @@ export async function POST(request: NextRequest) {
       const testUserId = '00000000-0000-0000-0000-000000000000';
       const testEmail = 'test-monitoring@example.com';
       
-      // Check if test user already exists
+      
       const existingUser = await User.findOne({ supabaseId: testUserId });
       
       if (existingUser) {
-        console.log('✅ Test user already exists');
+        console.log(' Test user already exists');
         return NextResponse.json({
           message: 'Test user already exists',
           user: existingUser
@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
         isActive: true,
       });
 
-      console.log('✅ Test user created:', testUser);
+      console.log(' Test user created:', testUser);
 
       return NextResponse.json({
         message: 'Test user created successfully',

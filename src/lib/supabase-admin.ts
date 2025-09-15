@@ -1,9 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
 
-// Admin client for server-side operations that need to bypass RLS
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!, // Service role key bypasses RLS
+  process.env.SUPABASE_SERVICE_ROLE_KEY!,
   {
     auth: {
       autoRefreshToken: false,
@@ -12,7 +11,6 @@ const supabaseAdmin = createClient(
   }
 );
 
-// Regular client for user operations with RLS
 const supabaseClient = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -20,7 +18,6 @@ const supabaseClient = createClient(
 
 export { supabaseAdmin, supabaseClient };
 
-// Types for Supabase study blocks
 export interface SupabaseStudyBlock {
   id: string;
   user_id: string;
@@ -34,10 +31,8 @@ export interface SupabaseStudyBlock {
   updated_at: string;
 }
 
-// Utility functions for Supabase operations
 export class SupabaseStudyBlockService {
   
-  // Create study block in Supabase
   static async create(
     userId: string,
     mongodbId: string,
@@ -62,7 +57,6 @@ export class SupabaseStudyBlockService {
         return null;
       }
 
-      // Sanitize title to prevent JSON issues
       const sanitizedTitle = data.title.replace(/[\x00-\x1F\x7F-\x9F]/g, '').trim();
 
       const insertData = {
@@ -92,7 +86,6 @@ export class SupabaseStudyBlockService {
           insertData
         });
         
-        // Check for specific error types
         if (error.code === '22P02') {
           console.error('JSON parsing error detected - this may be a webhook trigger issue');
         } else if (error.code === '23505') {
@@ -108,7 +101,7 @@ export class SupabaseStudyBlockService {
       return result;
     } catch (error) {
       console.error('Error in SupabaseStudyBlockService.create:', {
-        error: error instanceof Error ? error.message : error,
+        error: error instanceof Error ? error.message : String(error),
         stack: error instanceof Error ? error.stack : undefined,
         userId,
         mongodbId,
@@ -118,7 +111,6 @@ export class SupabaseStudyBlockService {
     }
   }
 
-  // Update study block in Supabase
   static async update(
     mongodbId: string,
     data: Partial<{
@@ -149,7 +141,6 @@ export class SupabaseStudyBlockService {
     }
   }
 
-  // Delete study block in Supabase
   static async delete(mongodbId: string): Promise<boolean> {
     try {
       const { error } = await supabaseAdmin
@@ -169,7 +160,6 @@ export class SupabaseStudyBlockService {
     }
   }
 
-  // Get study blocks for a user (with RLS)
   static async getByUser(userId: string): Promise<SupabaseStudyBlock[]> {
     try {
       const { data: result, error } = await supabaseClient
@@ -191,7 +181,6 @@ export class SupabaseStudyBlockService {
     }
   }
 
-  // Update reminder sent status
   static async markReminderSent(mongodbId: string): Promise<boolean> {
     try {
       const { error } = await supabaseAdmin
@@ -211,7 +200,6 @@ export class SupabaseStudyBlockService {
     }
   }
 
-  // Get blocks needing reminders (admin operation)
   static async getBlocksNeedingReminders(
     startTime: Date,
     endTime: Date
