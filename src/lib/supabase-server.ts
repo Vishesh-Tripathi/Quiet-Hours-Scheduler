@@ -16,7 +16,7 @@ export async function createClient(request: NextRequest) {
         get(name: string) {
           return request.cookies.get(name)?.value;
         },
-        set(name: string, value: string, options: any) {
+        set(name: string, value: string, options: Record<string, unknown>) {
           request.cookies.set({
             name,
             value,
@@ -33,20 +33,14 @@ export async function createClient(request: NextRequest) {
             ...options,
           });
         },
-        remove(name: string, options: any) {
-          request.cookies.delete({
-            name,
-            ...options,
-          });
+        remove(name: string, options: Record<string, unknown>) {
+          request.cookies.delete(name);
           response = NextResponse.next({
             request: {
               headers: request.headers,
             },
           });
-          response.cookies.delete({
-            name,
-            ...options,
-          });
+          response.cookies.delete(name);
         },
       },
     }

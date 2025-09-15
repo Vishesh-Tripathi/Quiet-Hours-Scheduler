@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import mongoose from 'mongoose';
 import { createClient } from '@/lib/supabase-server';
 import connectDB from '@/lib/db';
 import { StudyBlock, User as UserModel } from '@/lib/models';
@@ -117,7 +118,7 @@ export async function POST(request: NextRequest) {
     // Also create in Supabase for row-level events and additional features
     try {
       console.log('Attempting to create study block in Supabase for user:', user.id);
-      console.log('MongoDB block ID:', (studyBlock._id as any).toString());
+      console.log('MongoDB block ID:', (studyBlock._id as mongoose.Types.ObjectId).toString());
       console.log('Block data:', {
         title: title.trim(),
         start_time: start.toISOString(),
@@ -126,7 +127,7 @@ export async function POST(request: NextRequest) {
 
       const supabaseBlock = await SupabaseStudyBlockService.create(
         user.id,
-        (studyBlock._id as any).toString(),
+        (studyBlock._id as mongoose.Types.ObjectId).toString(),
         {
           title: title.trim(),
           start_time: start.toISOString(),

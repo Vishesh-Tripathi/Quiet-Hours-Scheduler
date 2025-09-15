@@ -1,5 +1,6 @@
 import * as cron from 'node-cron';
 import { addMinutes, isAfter, isBefore } from 'date-fns';
+import mongoose from 'mongoose';
 import connectDB from './db';
 import { StudyBlock, JobLock, User, IStudyBlock } from './models';
 import { getEmailService } from './email'
@@ -110,7 +111,7 @@ class CronScheduler {
           }
 
           reminders.push({
-            blockId: (block._id as any).toString(),
+            blockId: (block._id as mongoose.Types.ObjectId).toString(),
             userId: block.supabaseUserId,
             userEmail: user.email,
             userName: user.name,
@@ -119,7 +120,7 @@ class CronScheduler {
             endTime: block.endTime,
           });
         } catch (error) {
-          console.error(`Error processing block ${(block._id as any).toString()}:`, error);
+          console.error(`Error processing block ${(block._id as mongoose.Types.ObjectId).toString()}:`, error);
         }
       }
 
@@ -216,7 +217,7 @@ class CronScheduler {
       return true;
     } catch (error) {
       // Lock already exists (duplicate key error)
-      if ((error as any).code === 11000) {
+      if (error && typeof error === 'object' && 'code' in error && (error as { code: number }).code === 11000) {
         return false;
       }
       
@@ -265,7 +266,7 @@ class CronScheduler {
   getStatus() {
     return {
       isRunning: this.isRunning,
-      isScheduled: !!this.cronJob && typeof (this.cronJob as any).running === 'boolean' ? (this.cronJob as any).running : false,
+      isScheduled: !!this.cronJob && this.cronJob.getStatus() === 'scheduled',
     };
   }
 }

@@ -125,7 +125,15 @@ StudyBlockSchema.statics.hasOverlap = async function (
   endTime: Date,
   excludeId?: string
 ) {
-  const query: any = {
+  const query: {
+    supabaseUserId: string;
+    isActive: boolean;
+    $or: Array<{
+      startTime?: { $lte?: Date; $gte?: Date; $lt?: Date };
+      endTime?: { $gt?: Date; $gte?: Date; $lte?: Date };
+    }>;
+    _id?: { $ne: string };
+  } = {
     supabaseUserId,
     isActive: true,
     $or: [

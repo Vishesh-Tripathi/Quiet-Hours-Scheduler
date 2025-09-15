@@ -4,7 +4,7 @@ import { SupabaseStudyBlockService, supabaseAdmin } from '@/lib/supabase-admin';
 
 export async function POST(request: NextRequest) {
   try {
-    const { supabase, user } = await createClient(request);
+    const {  user } = await createClient(request);
 
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

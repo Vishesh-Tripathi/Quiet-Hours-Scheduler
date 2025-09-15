@@ -156,7 +156,13 @@ async function handleUpdateEvent(payload: SupabaseWebhookPayload) {
   // If we have a mongodb_id, sync the changes
   if (record.mongodb_id) {
     try {
-      const updateData: any = {};
+      const updateData: {
+        title?: string;
+        startTime?: Date;
+        endTime?: Date;
+        reminderSent?: boolean;
+        isActive?: boolean;
+      } = {};
       
       if (titleChanged) updateData.title = record.title;
       if (timeChanged) {

@@ -19,7 +19,10 @@ export async function syncUser(supabaseUser: User) {
       });
     } else {
       // Update existing user if needed
-      const updateData: any = {};
+      const updateData: {
+        email?: string;
+        name?: string;
+      } = {};
       
       if (existingUser.email !== supabaseUser.email) {
         updateData.email = supabaseUser.email;
