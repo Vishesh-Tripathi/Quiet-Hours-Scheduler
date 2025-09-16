@@ -40,15 +40,16 @@ export function Navigation() {
               <span className="text-2xl">🔕</span>
             </div>
             <div className="ml-3">
-              <h1 className="text-xl font-semibold text-black  900">
-                Quiet Hours Scheduler
+              <h1 className="text-lg sm:text-xl font-semibold text-gray-900">
+                <span className="hidden sm:inline">Quiet Hours Scheduler</span>
+                <span className="sm:hidden">Quiet Hours</span>
               </h1>
             </div>
           </div>
 
           {/* User info and logout */}
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-2 sm:space-x-4">
+            <div className="flex items-center space-x-2 sm:space-x-3">
               {/* User avatar/icon */}
               <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                 <span className="text-sm font-medium text-blue-600">
@@ -56,42 +57,43 @@ export function Navigation() {
                 </span>
               </div>
               
-              {/* User info */}
-              <div className="flex flex-col">
-                <span className="text-sm font-medium text-black  900">
+              {/* User info - hidden on mobile */}
+              <div className="hidden sm:flex flex-col">
+                <span className="text-sm font-medium text-gray-900">
                   {user.user_metadata?.name || user.email?.split('@')[0]}
                 </span>
-                <span className="text-xs text-black  500">
+                <span className="text-xs text-gray-500">
                   {user.email}
                 </span>
               </div>
             </div>
 
-            {/* Status indicator */}
-            <div className="flex items-center space-x-2">
+            {/* Status indicator - hidden on mobile */}
+            <div className="hidden md:flex items-center space-x-2">
               <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-              <span className="text-xs text-black  600">Online</span>
+              <span className="text-xs text-gray-600">Online</span>
             </div>
 
             {/* Logout button */}
             <button
               onClick={handleSignOut}
               disabled={signingOut}
-              className={`inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md transition-colors duration-200 ${
+              className={`inline-flex items-center px-2 sm:px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md transition-colors duration-200 ${
                 signingOut
                   ? 'text-gray-500 bg-gray-100 cursor-not-allowed opacity-50'
                   : 'text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500'
               }`}
+              title={signingOut ? 'Signing Out...' : 'Sign Out'}
             >
               {signingOut ? (
                 <>
                   <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-500 mr-1"></div>
-                  Signing Out...
+                  <span className="hidden sm:inline">Signing Out...</span>
                 </>
               ) : (
                 <>
                   <svg
-                    className="w-4 h-4 mr-1"
+                    className="w-4 h-4 sm:mr-1"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -103,7 +105,7 @@ export function Navigation() {
                       d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
                     />
                   </svg>
-                  Sign Out
+                  <span className="hidden sm:inline">Sign Out</span>
                 </>
               )}
             </button>
