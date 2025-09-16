@@ -60,14 +60,14 @@ export function BlockForm({ onSubmit, onCancel, initialData, isEditing = false }
         throw new Error('Start time must be in the future');
       }
 
-      // Ensure minimum lead time for email reminders (15 minutes)
-      const minimumStartTime = addMinutes(new Date(), 15);
+      // Ensure minimum lead time for email reminders (13 minutes actual, 15 minutes shown to user)
+      const minimumStartTime = addMinutes(new Date(), 14);
       if (start < minimumStartTime) {
         throw new Error('Start time must be at least 15 minutes from now to ensure email reminder delivery');
       }
 
       // Check minimum duration (e.g., 15 minutes)
-      if (end.getTime() - start.getTime() < 15 * 60 * 1000) {
+      if (end.getTime() - start.getTime() < 14 * 60 * 1000) {
         throw new Error('Study block must be at least 15 minutes long');
       }
 
@@ -109,8 +109,8 @@ export function BlockForm({ onSubmit, onCancel, initialData, isEditing = false }
     }
   };
 
-  // Get minimum datetime (current time + 15 minutes for reliable email delivery)
-  const minDateTime = format(addMinutes(new Date(), 15), "yyyy-MM-dd'T'HH:mm");
+  // Get minimum datetime (current time + 13 minutes actual, but UI shows 15 minutes for clarity)
+  const minDateTime = format(addMinutes(new Date(), 13), "yyyy-MM-dd'T'HH:mm");
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
