@@ -60,14 +60,16 @@ export function BlockForm({ onSubmit, onCancel, initialData, isEditing = false }
         throw new Error('Start time must be in the future');
       }
 
-      // Ensure minimum lead time for email reminders (13 minutes actual, 15 minutes shown to user)
-      const minimumStartTime = addMinutes(new Date(), 14);
+      // Ensure minimum lead time for email reminders (based on reminder window: 9-10 minutes)
+      // Set minimum to 10 minutes to ensure the reminder window can catch it
+      const REMINDER_WINDOW_END = 10; // minutes
+      const minimumStartTime = addMinutes(new Date(), REMINDER_WINDOW_END);
       if (start < minimumStartTime) {
-        throw new Error('Start time must be at least 15 minutes from now to ensure email reminder delivery');
+        throw new Error(`Start time must be at least ${REMINDER_WINDOW_END} minutes from now to ensure email reminder delivery`);
       }
 
       // Check minimum duration (e.g., 15 minutes)
-      if (end.getTime() - start.getTime() < 14 * 60 * 1000) {
+      if (end.getTime() - start.getTime() < 15 * 60 * 1000) {
         throw new Error('Study block must be at least 15 minutes long');
       }
 
@@ -109,8 +111,9 @@ export function BlockForm({ onSubmit, onCancel, initialData, isEditing = false }
     }
   };
 
-  // Get minimum datetime (current time + 13 minutes actual, but UI shows 15 minutes for clarity)
-  const minDateTime = format(addMinutes(new Date(), 13), "yyyy-MM-dd'T'HH:mm");
+  // Get minimum datetime (based on reminder window: 9-10 minutes, set to 10 minutes)
+  const REMINDER_WINDOW_END = 10; // minutes
+  const minDateTime = format(addMinutes(new Date(), REMINDER_WINDOW_END), "yyyy-MM-dd'T'HH:mm");
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
@@ -156,7 +159,7 @@ export function BlockForm({ onSubmit, onCancel, initialData, isEditing = false }
               required
             />
             <p className="text-xs text-gray-600 mt-1">
-              ⏰ Must be at least 15 minutes from now to ensure email reminder delivery
+              ⏰ Must be at least 12 minutes from now to ensure email reminder delivery
             </p>
           </div>
 

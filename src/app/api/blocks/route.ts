@@ -78,11 +78,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Ensure minimum lead time for email reminders (13 minutes actual, 15 minutes shown to user)
-    const minimumStartTime = new Date(Date.now() + 13 * 60 * 1000); // 13 minutes from now
+    // Ensure minimum lead time for email reminders (based on reminder window: 9-10 minutes)
+    // Set minimum to 10 minutes to ensure the reminder window can catch it
+    const REMINDER_WINDOW_END = 10; // minutes
+    const minimumStartTime = new Date(Date.now() + REMINDER_WINDOW_END * 60 * 1000);
     if (start < minimumStartTime) {
       return NextResponse.json(
-        { error: 'Start time must be at least 15 minutes from now to ensure email reminder delivery' },
+        { error: `Start time must be at least ${REMINDER_WINDOW_END} minutes from now to ensure email reminder delivery` },
         { status: 400 }
       );
     }

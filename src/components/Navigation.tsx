@@ -1,10 +1,11 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuth } from './AuthWrapper';
 
 export function Navigation() {
   const { user, signOut, loading } = useAuth();
+  const [signingOut, setSigningOut] = useState(false);
 
   if (loading) {
     return null; // Don't show navigation while loading
@@ -15,10 +16,17 @@ export function Navigation() {
   }
 
   const handleSignOut = async () => {
+    if (signingOut) return; // Prevent multiple clicks
+    
+    setSigningOut(true);
     try {
       await signOut();
     } catch (error) {
       console.error('Error signing out:', error);
+      // Show user-friendly error message
+      alert('Failed to sign out. Please try again.');
+    } finally {
+      setSigningOut(false);
     }
   };
 
@@ -68,22 +76,36 @@ export function Navigation() {
             {/* Logout button */}
             <button
               onClick={handleSignOut}
-              className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200"
+              disabled={signingOut}
+              className={`inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md transition-colors duration-200 ${
+                signingOut
+                  ? 'text-gray-500 bg-gray-100 cursor-not-allowed opacity-50'
+                  : 'text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500'
+              }`}
             >
-              <svg
-                className="w-4 h-4 mr-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                />
-              </svg>
-              Sign Out
+              {signingOut ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-500 mr-1"></div>
+                  Signing Out...
+                </>
+              ) : (
+                <>
+                  <svg
+                    className="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                    />
+                  </svg>
+                  Sign Out
+                </>
+              )}
             </button>
           </div>
         </div>

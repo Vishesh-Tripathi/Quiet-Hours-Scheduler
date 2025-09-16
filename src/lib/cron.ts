@@ -81,13 +81,13 @@ class CronScheduler {
 
       const now = new Date();
       const nineMinutesFromNow = addMinutes(now, 9);
-      const twelveMinutesFromNow = addMinutes(now, 12);
+      const tenMinutesFromNow = addMinutes(now, 10);
 
-      // Find blocks that start in 9-12 minutes (wider window for better reliability)
+      // Find blocks that start in 9-10 minutes (tighter window for more precise timing)
       const upcomingBlocks = await StudyBlock.find({
         startTime: {
           $gte: nineMinutesFromNow,
-          $lt: twelveMinutesFromNow,
+          $lt: tenMinutesFromNow,
         },
         reminderSent: false,
         isActive: true,

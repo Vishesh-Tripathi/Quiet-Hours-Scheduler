@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/components/AuthWrapper";
-import { Navigation } from "@/components/Navigation";
 
 // Initialize cron scheduler on server startup
 import "@/lib/startup";
@@ -33,7 +32,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AuthProvider>
-          <Navigation />
           {children}
         </AuthProvider>
       </body>
